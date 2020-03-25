@@ -1,14 +1,21 @@
 const express = require('express');
 
+const OngController = require('./controllers/OngController');
+const IncidentController = require('./controllers/incidentController');
+const ProfileController = require('./controllers/ProfileController');
+const SessionsCotroller = require('./controllers/SessionsController');
+
 const routes = express.Router();
 
-routes.get('/', (request, response) => {
+routes.post('/sessions', SessionsCotroller.create);
 
-  response.json({
-    name: "leandro silva",
-    age: 36
-  })
+routes.get('/ongs', OngController.index);
+routes.post('/ongs', OngController.create);
 
-});
+routes.get('/incidents', IncidentController.index);
+routes.post('/incidents', IncidentController.create);
+routes.delete('/incidents/:id', IncidentController.delete);
+
+routes.get('/profile', ProfileController.index);
 
 module.exports = routes;
